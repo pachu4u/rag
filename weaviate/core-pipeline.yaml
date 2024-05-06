@@ -20,4 +20,4 @@ spec:
 
   - name: mycodeblock1
     container:
-      image: cr.weaviate.io/semitechnologies/weaviate:latest
+      image: semitechnologies/weaviate:latest
