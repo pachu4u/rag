@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: code-pipeline # executable id, must be unique across all your workflows (YAML files), please modify this to any value (e.g. code-pipeline-12345) if you are not the only user of your SAP AI Core instance.
+  annotations:
+    scenarios.ai.sap.com/description: "Weaviate Vector Engine"
+    scenarios.ai.sap.com/name: "Weaviate"
+    executables.ai.sap.com/description: "Weaviate Vector Engine"
+    executables.ai.sap.com/name: "Weaviate"
+  labels:
+    scenarios.ai.sap.com/id: "Weaviate"
+    ai.sap.com/version: "1.0"
+spec:
+  entrypoint: mypipeline
+  templates:
+  - name: mypipeline
+    steps:
+    - - name: mypredictor
+        template: mycodeblock1
+
+  - name: mycodeblock1
+    container:
+      image: cr.weaviate.io/semitechnologies/weaviate:latest
+      command: ["--host", "0.0.0.0", "--port", "8080", "--scheme", "http"]
+      args:
+        - ""
